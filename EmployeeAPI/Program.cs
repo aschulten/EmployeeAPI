@@ -13,6 +13,13 @@ var connectionString = builder.Configuration.GetConnectionString("EmployeeDataba
 builder.Services.AddDbContext<EmployeeContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:4200")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
 builder.Services.AddControllers();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -33,7 +40,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-
+app.UseCors("AllowSpecificOrigin");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

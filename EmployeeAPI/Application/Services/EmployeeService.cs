@@ -14,7 +14,8 @@ namespace EmployeeAPI.Application.Services
 
         public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
         {
-            return await _employeeRepository.GetAllAsync();
+            var employees = await _employeeRepository.GetAllAsync();
+            return employees.OrderBy(x => x.LastName);
         }
 
         public async Task<Employee> GetEmployeeByIdAsync(Guid id)

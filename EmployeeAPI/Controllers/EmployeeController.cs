@@ -20,7 +20,7 @@ namespace EmployeeAPI.Controllers
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
             var employees = await _employeeService.GetAllEmployeesAsync();
-            return Ok(employees.OrderBy(x => x.LastName));
+            return Ok(employees);
         }
 
         // GET: api/employee/5
