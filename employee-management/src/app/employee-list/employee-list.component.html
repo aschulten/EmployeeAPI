@@ -1,14 +1,12 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutGap="20px">
+    <a mat-button href="/employees" class="toolbar-link">Employee List</a>
+    <mat-form-field>
+      <input matInput placeholder="Search employee" [(ngModel)]="searchTerm" (keyup)="searchEmployees()">
+    </mat-form-field>
+  </mat-toolbar>
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Employee List</mat-card-title>
-    </mat-card-header>
     <mat-card-content>
-      <table mat-table [dataSource]="employees" class="mat-elevation-z8">
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-        </ng-container>
-  
+      <table mat-table [dataSource]="employees" class="mat-elevation-z8">       
         <ng-container matColumnDef="firstName">
           <th mat-header-cell *matHeaderCellDef>First Name</th>
           <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
@@ -28,10 +26,19 @@
           <th mat-header-cell *matHeaderCellDef>Last Salary</th>
           <td mat-cell *matCellDef="let element">{{ element.lastSalary | currency }}</td>
         </ng-container>
-  
+
+        <ng-container matColumnDef="employeeId">
+            <th mat-header-cell *matHeaderCellDef>Employee ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.employeeId | number }}</td>
+          </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </mat-card-content>
-  </mat-card>
+    <mat-paginator [length]="totalCount"
+               [pageSize]="pageSize"
+               (page)="onPageChange($event)"
+               showFirstLastButtons>
+    </mat-paginator>
+</mat-card>
   

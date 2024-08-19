@@ -14,18 +14,20 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 })
 export class AppComponent implements OnInit {
   employees: Employee[] = [];
+  pageNumber: number = 1;
+  pageSize: number = 30;
 
  
   constructor(private http: HttpClient, private employeeService: EmployeeService) {}
 
   ngOnInit() {
-    this.getEmployees();
+    this.getEmployees(this.pageNumber, this.pageSize);
   }
 
-  getEmployees() {
-    this.employeeService.getEmployees()
+  getEmployees(pageNumber: number,pageSize: number) {
+    this.employeeService.getEmployees(pageNumber,pageSize)
       .subscribe(
-        data => {this.employees = data},
+        data => {this.employees = data.data},
         error => console.error('Error fetching employees', error)
       );
   }

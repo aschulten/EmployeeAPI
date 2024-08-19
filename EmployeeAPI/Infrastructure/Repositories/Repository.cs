@@ -1,3 +1,4 @@
+using EmployeeAPI.Domain.Entities;
 using EmployeeAPI.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 

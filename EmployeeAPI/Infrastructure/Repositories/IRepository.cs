@@ -1,4 +1,6 @@
-﻿namespace EmployeeAPI.Infrastructure.Repositories
+﻿using EmployeeAPI.Domain.Entities;
+
+namespace EmployeeAPI.Infrastructure.Repositories
 {
     public interface IRepository<T> where T : class
     {

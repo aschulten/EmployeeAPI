@@ -1,0 +1,35 @@
+.mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  mat-card {
+    margin-top: 25px;
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-paginator {
+    margin-top: 20px;
+  }
+  
+  .toolbar-link {
+    margin-right: 60px;
+  }
+
+
+.toolbar-link:last-child {
+    margin-right: 0;
+  }
+
+.mat-toolbar a.toolbar-link {
+    margin-right: 50px !important;
+    display: inline-block;
+
+}

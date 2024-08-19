@@ -17,9 +17,9 @@ namespace EmployeeAPI.Controllers
 
         // GET: api/employee
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var employees = await _employeeService.GetAllEmployeesAsync();
+            var employees = await _employeeService.GetEmployeesPagedAsync(pageNumber, pageSize);
             return Ok(employees);
         }
 
@@ -73,6 +73,13 @@ namespace EmployeeAPI.Controllers
             await _employeeService.DeleteEmployeeAsync(id);
 
             return NoContent();
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<PagedResponse<Employee>>> SearchEmployees(int pageNumber, int pageSize, string searchTerm)
+        {
+            var data = await _employeeService.SearchEmployeesAsync(pageNumber, pageSize, searchTerm);
+            return Ok(data);
         }
     }
 }
