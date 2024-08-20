@@ -11,6 +11,10 @@ First Step
 
 Create a database under name of EmployeeDB. I used windows authentication, but if you want you can add user and password. 
 Update connection string with server name, and if you choose to, user and password, in appsettings.json in EmployeeAPI folder.
+
+
+
+
     ![alt text](image.png)
 
 Second step
