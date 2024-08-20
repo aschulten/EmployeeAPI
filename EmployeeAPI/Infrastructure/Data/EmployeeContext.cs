@@ -15,6 +15,11 @@ namespace EmployeeAPI.Infrastructure.Data
             {
                 entity.Property(e => e.LastSalary)
                     .HasColumnType("decimal(18,2)");
+                entity.HasIndex(e => e.LastName)
+                      .HasDatabaseName("IX_Employee_LastName");
+                entity.HasIndex(e => e.Id)
+                      .IsUnique()
+                      .HasDatabaseName("IX_Employee_EmployeeId");
             });
 
             base.OnModelCreating(modelBuilder);
